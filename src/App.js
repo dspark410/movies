@@ -38,12 +38,18 @@ function App() {
   const getMovies = async (page) => {
     if (input === '') {
       const { data } = await axios.get(
-        `https://www.omdbapi.com/?s=${session.trim()}&type=movie&page=${page}&apikey=${API_KEY}`
+        `https://www.omdbapi.com/?s=${session.replace(
+          /\s/g,
+          ''
+        )}&type=movie&page=${page}&apikey=${API_KEY}`
       )
       setMovies(data)
     } else {
       const { data } = await axios.get(
-        `https://www.omdbapi.com/?s=${input.trim()}&type=movie&page=${page}&apikey=${API_KEY}`
+        `https://www.omdbapi.com/?s=${input.replace(
+          /\s/g,
+          ''
+        )}&type=movie&page=${page}&apikey=${API_KEY}`
       )
       setMovies(data)
     }
