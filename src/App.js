@@ -28,14 +28,14 @@ function App() {
 
   const loadMovies = async () => {
     const { data } = await axios.get(
-      `http://www.omdbapi.com/?s=dark&type=movie&page=1&apikey=${API_KEY}`
+      `https://www.omdbapi.com/?s=dark&type=movie&page=1&apikey=${API_KEY}`
     )
     setMovies(data)
   }
 
   const getMovies = async (page) => {
     const { data } = await axios.get(
-      `http://www.omdbapi.com/?s=${input.trim()}&type=movie&page=${page}&apikey=${API_KEY}`
+      `https://www.omdbapi.com/?s=${input.trim()}&type=movie&page=${page}&apikey=${API_KEY}`
     )
     setMovies(data)
   }
