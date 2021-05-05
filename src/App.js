@@ -26,6 +26,8 @@ function App() {
 
   const API_KEY = process.env.REACT_APP_API_KEY
 
+  const session = JSON.parse(sessionStorage.getItem('movie')) || ''
+
   const loadMovies = async () => {
     const { data } = await axios.get(
       `https://www.omdbapi.com/?s=dark&type=movie&page=1&apikey=${API_KEY}`
@@ -34,17 +36,26 @@ function App() {
   }
 
   const getMovies = async (page) => {
-    const { data } = await axios.get(
-      `https://www.omdbapi.com/?s=${input.trim()}&type=movie&page=${page}&apikey=${API_KEY}`
-    )
-    setMovies(data)
+    if (input === '') {
+      const { data } = await axios.get(
+        `https://www.omdbapi.com/?s=${session.trim()}&type=movie&page=${page}&apikey=${API_KEY}`
+      )
+      setMovies(data)
+    } else {
+      const { data } = await axios.get(
+        `https://www.omdbapi.com/?s=${input.trim()}&type=movie&page=${page}&apikey=${API_KEY}`
+      )
+      setMovies(data)
+    }
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
     setSkeleton(true)
+    sessionStorage.setItem('movie', JSON.stringify(input))
     setTimeout(() => {
       getMovies()
+      setInput('')
       setPage(1)
       setInitial(false)
       setSkeleton(false)
@@ -110,7 +121,7 @@ function App() {
             <AiOutlineSearch onClick={handleSubmit} className='search-icon' />
           </form>
 
-          {input === ''
+          {input !== '' && session
             ? ''
             : initial
             ? ''
