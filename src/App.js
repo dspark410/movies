@@ -35,7 +35,7 @@ function App() {
 
   const getMovies = async (page) => {
     const { data } = await axios.get(
-      `http://www.omdbapi.com/?s=${input}&type=movie&page=${page}&apikey=${API_KEY}`
+      `http://www.omdbapi.com/?s=${input.trim()}&type=movie&page=${page}&apikey=${API_KEY}`
     )
     setMovies(data)
   }
@@ -45,6 +45,7 @@ function App() {
     setSkeleton(true)
     setTimeout(() => {
       getMovies()
+      setPage(1)
       setInitial(false)
       setSkeleton(false)
     }, 1000)
