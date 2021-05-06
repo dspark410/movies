@@ -16,7 +16,7 @@ body {
 body {
   background-image: linear-gradient(to top, #537895 0%, #09203f 100%);
   background-repeat: no-repeat;
-  width: 100%;
+  min-width: 100%;
 }
 
 .container {
@@ -31,22 +31,36 @@ body {
 
 .container h1 {
   color: #e1e1e1;
-  font-size: 3.5rem;
-  margin: 1rem 0 0.5rem 0;
+  font-size: 3.5em;
   font-weight: 900;
 }
 
 .container p {
   color: #e1e1e1;
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 2.5em;
+  font-weight: 900;
+}
+
+.form-nomination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2em;
+}
+
+.text-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 660px;
 }
 
 .text-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
 }
 
 .form-container {
@@ -61,7 +75,7 @@ body {
 
 .movie-icon {
   color: #e1e1e1;
-  font-size: 1.5rem;
+  font-size: 4.5em;
   margin-left: 8px;
 }
 
@@ -71,10 +85,10 @@ form {
 
 .search-icon {
   position: absolute;
-  top: 17%;
+  top: 22%;
   right: 3%;
   color: #e1e1e1;
-  font-size: 1.5rem;
+  font-size: 1.5em;
 }
 
 .search-icon:hover {
@@ -82,16 +96,16 @@ form {
 }
 
 input {
-  width: 25rem;
-  height: 2rem;
-  border-radius: 0.3rem;
+  width: 28em;
+  height: 3em;
+  border-radius: 0.3em;
   background-color: #47657c;
   outline: none;
   border: none;
   color: #e1e1e1;
-  font-size: 1rem;
+  font-size: 1em;
   font-weight: 800;
-  padding: 1.1rem 1rem;
+  padding: 1.1em 1em;
 }
 
 input::placeholder {
@@ -110,7 +124,7 @@ button {
 
 .disabled {
   color: #6e6d6d;
-  font-size: 1.8rem;
+  font-size: 1.8em;
   border: none;
 }
 
@@ -120,13 +134,13 @@ button {
 
 .next {
   color: #e1e1e1;
-  font-size: 1.8rem;
+  font-size: 1.8em;
   border: none;
 }
 
 .previous {
   color: #e1e1e1;
-  font-size: 1.8rem;
+  font-size: 1.8em;
   border: none;
 }
 
@@ -139,36 +153,46 @@ button {
 }
 
 .nomination-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   color: #e1e1e1;
-  /* max-width: 920px; */
+  width: 450px;
+  height: 225px;
+  border-radius: 5px;
+  box-shadow: 0 0 3px #ccc;
+  background-color: #47657c;
+  padding: 1em 1em;
+  margin: 0.5em 2em;
 }
 
-.nomination-container h1 {
-  font-size: 2.5rem;
-  margin: 1rem 0 0.5rem 0;
+.nomination-header {
+  font-size: 2.5em;
   font-weight: 900;
+}
+
+.nomination-box-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .nomination {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.2rem;
+  font-size: 1.1em;
+  min-width: 380px;
+  margin: 0.25em 0;
 }
 
 .long-nomination-title {
-  /* width: 100px; */
+  width: 380px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  font-size: 1.1em;
+  margin: 0.25em 0;
 }
 
 .close-icon {
-  font-size: 1.3rem;
+  font-size: 1.3em;
+  margin-left: 0.3em;
 }
 
 .close-icon:hover {
@@ -177,9 +201,9 @@ button {
 
 .movies-container {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-gap: 2rem;
-  margin-top: 2.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2em;
+  margin-top: 2.5em;
   color: #e1e1e1;
 }
 
@@ -196,23 +220,23 @@ button {
 }
 
 .movie-img {
-  height: 25rem;
-  width: 20rem;
+  height: 25em;
+  width: 20em;
 }
 
 .star-icon-active {
   position: absolute;
   top: 1%;
   right: 1%;
-  font-size: 1.8rem;
-  color: yellow;
+  font-size: 1.8em;
+  color: rgb(248, 248, 66);
 }
 
 .star-icon-inactive {
   position: absolute;
   top: 1%;
   right: 1%;
-  font-size: 1.8rem;
+  font-size: 1.8em;
   color: #e1e1e1;
 }
 
@@ -230,21 +254,21 @@ button {
 
 .title {
   text-overflow: none;
-  margin-top: 0.3rem;
+  margin-top: 0.3em;
 }
 
 .year {
-  margin: 0.3rem 0 1rem 0;
+  margin: 0.3em 0 1em 0;
 }
 
 .no-movie {
   color: #e1e1e1;
-  font-size: 1.5rem;
+  font-size: 1.5em;
 }
 
 .too-many-movies {
   color: #e1e1e1;
-  font-size: 1.5rem;
+  font-size: 1.5em;
 }
 
 .skeleon-container {
@@ -253,4 +277,166 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .container h1 {
+    font-size: 2.5em;
+  }
+
+  .container p {
+    font-size: 1.5em;
+  }
+
+  .movie-icon {
+    font-size: 2.5em;
+  }
+
+  .text-form-container {
+    width: 300px;
+  }
+
+  input {
+    width: 14em;
+    height: 1.5em;
+    margin-bottom: 0.5em;
+  }
+
+  input::placeholder {
+    color: #e1e1e1;
+    opacity: 0.7;
+    font-size: 0.7em;
+  }
+
+  .search-icon {
+    top: 17%;
+  }
+
+  .form-nomination-container {
+    flex-direction: column;
+  }
+
+  .nomination-container {
+    width: 300px;
+    height: 162px;
+  }
+
+  .nomination-header {
+    font-size: 1.5em;
+    margin: 0em 0 0.5em 0;
+  }
+
+  .nomination-box-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .nomination {
+    display: flex;
+    font-size: 0.7em;
+    min-width: 250px;
+    margin: 0.15em 0;
+  }
+
+  .long-nomination-title {
+    width: 250px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 0.7em;
+    margin: 0.15em 0;
+  }
+
+  .close-icon {
+    font-size: 0.8em;
+  }
+
+  .movies-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .movie-img {
+    height: 18.5em;
+    width: 15em;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .container h1 {
+    font-size: 2.5em;
+  }
+
+  .container p {
+    font-size: 1.5em;
+  }
+
+  .movie-icon {
+    font-size: 2.5em;
+  }
+
+  .text-form-container {
+    width: 300px;
+  }
+
+  input {
+    width: 14em;
+    height: 1.5em;
+    margin-bottom: 0.5em;
+  }
+
+  input::placeholder {
+    color: #e1e1e1;
+    opacity: 0.7;
+    font-size: 0.7em;
+  }
+
+  .search-icon {
+    top: 17%;
+  }
+
+  .nomination-container {
+    width: 300px;
+    height: 162px;
+  }
+
+  .nomination-header {
+    font-size: 1.5em;
+    margin: 0em 0 0.5em 0;
+  }
+
+  .nomination-box-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .nomination {
+    display: flex;
+    font-size: 0.7em;
+    min-width: 250px;
+    margin: 0.15em 0;
+  }
+
+  .long-nomination-title {
+    width: 250px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 0.7em;
+    margin: 0.15em 0;
+  }
+
+  .close-icon {
+    font-size: 0.8em;
+  }
+
+  .movies-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .movie-img {
+    height: 14.5em;
+    width: 11em;
+  }
 }
