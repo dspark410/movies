@@ -51,7 +51,22 @@ function Movies({
     setNominations(filteredArr)
   }
 
-  const getActiveClass = (title) => {
+  const getActiveImg = (title) => {
+    const nominationsArr = nominations.filter((nomination) => {
+      return nomination.title === title
+    })
+    if (nominationsArr[0] === undefined) {
+      return 'movie-img'
+    } else {
+      if (nominationsArr[0].title === title) {
+        return 'movie-img-opacity'
+      } else {
+        return 'movie-img'
+      }
+    }
+  }
+
+  const getActiveStar = (title) => {
     const nominationsArr = nominations.filter((nomination) => {
       return nomination.title === title
     })
@@ -83,6 +98,9 @@ function Movies({
   }
 
   useEffect(() => {
+    if (nominations.length === 5) {
+      alert('Nominated Five!')
+    }
     localStorage.setItem('nominations', JSON.stringify(nominations))
   }, [nominations])
 
@@ -165,13 +183,13 @@ function Movies({
             <div className='movies' key={i}>
               <div className='movie-img-container'>
                 <img
-                  className='movie-img'
+                  className={getActiveImg(movie.Title)}
                   src={movie.Poster !== 'N/A' ? movie.Poster : imageLink}
                   alt={movie.Title}
                 />
 
                 <MdGrade
-                  className={getActiveClass(movie.Title)}
+                  className={getActiveStar(movie.Title)}
                   key={i}
                   onClick={() => getNominations(movie.Title, movie.Year)}
                 />

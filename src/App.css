@@ -224,6 +224,12 @@ button {
   width: 20em;
 }
 
+.movie-img-opacity {
+  height: 25em;
+  width: 20em;
+  opacity: 0.3;
+}
+
 .star-icon-active {
   position: absolute;
   top: 1%;
