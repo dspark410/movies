@@ -53,25 +53,14 @@ function Movies({ movies, skeleton }) {
 			return nomination.title === title
 		})
 		if (nominationsArr[0] !== undefined) {
-			console.log(
-				nominationsArr[0].title === title && nominationsArr[0].year === year
-			)
-			console.log(
-				nominationsArr[0].title !== title && nominationsArr[0].year !== year
-			)
-			console.log(nominationsArr[0], title)
 			if (
 				nominationsArr[0].title === title &&
 				nominationsArr[0].year === year
 			) {
-				console.log('running remove')
 				removeNomination(title, year)
-			} else if (
-				nominationsArr[0].title !== title &&
-				nominationsArr[0].year !== year
-			) {
-				addNomination(title, year)
 			}
+		} else {
+			addNomination(title, year)
 		}
 	}
 
@@ -111,13 +100,11 @@ function Movies({ movies, skeleton }) {
 						<div className='movies' key={i}>
 							<div className='movie-img-container'>
 								<img
-									onClick={() => addNomination(movie.Title, movie.Year)}
 									className='movie-img'
 									src={movie.Poster !== 'N/A' ? movie.Poster : imageLink}
 									alt={movie.Title}
 								/>
 
-								{/* () => addNomination(movie.Title, movie.Year) */}
 								<MdGrade
 									className={getActiveClass(movie.Title)}
 									key={i}
