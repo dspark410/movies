@@ -5,7 +5,6 @@ import './App.css'
 import {
   BiMovie,
   AiOutlineSearch,
-  MdGrade,
   BiRightArrow,
   BiLeftArrow,
 } from 'react-icons/all'
@@ -35,21 +34,15 @@ function App() {
     setMovies(data)
   }
 
-  const getMovies = async (page) => {
+  const getMovies = async (page = 1) => {
     if (input === '') {
       const { data } = await axios.get(
-        `https://www.omdbapi.com/?s=${session.replace(
-          /\s/g,
-          ''
-        )}&type=movie&page=${page}&apikey=${API_KEY}`
+        `https://www.omdbapi.com/?s=${session.trim()}&type=movie&page=${page}&apikey=${API_KEY}`
       )
       setMovies(data)
     } else {
       const { data } = await axios.get(
-        `https://www.omdbapi.com/?s=${input.replace(
-          /\s/g,
-          ''
-        )}&type=movie&page=${page}&apikey=${API_KEY}`
+        `https://www.omdbapi.com/?s=${input.trim()}&type=movie&page=${page}&apikey=${API_KEY}`
       )
       setMovies(data)
     }
@@ -57,15 +50,16 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setSkeleton(true)
     sessionStorage.setItem('movie', JSON.stringify(input))
+
+    setSkeleton(true)
     setTimeout(() => {
       getMovies()
       setInput('')
       setPage(1)
       setInitial(false)
       setSkeleton(false)
-    }, 1000)
+    }, 1500)
   }
 
   const getPreviousPage = () => {
@@ -148,11 +142,6 @@ function App() {
                 </div>
               )}
         </div>
-
-        <div className='nomination-container'>
-          {/* <div>Nomination List</div> */}
-        </div>
-
         <Movies movies={movies} skeleton={skeleton} />
       </div>
     )

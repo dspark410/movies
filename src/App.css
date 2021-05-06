@@ -138,6 +138,43 @@ button {
   cursor: pointer;
 }
 
+.nomination-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #e1e1e1;
+  /* max-width: 920px; */
+}
+
+.nomination-container h1 {
+  font-size: 2.5rem;
+  margin: 1rem 0 0.5rem 0;
+  font-weight: 900;
+}
+
+.nomination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.long-nomination-title {
+  /* width: 100px; */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.close-icon {
+  font-size: 1.3rem;
+}
+
+.close-icon:hover {
+  cursor: pointer;
+}
+
 .movies-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -154,9 +191,34 @@ button {
   text-align: center;
 }
 
+.movie-img-container {
+  position: relative;
+}
+
 .movie-img {
   height: 25rem;
   width: 20rem;
+}
+
+.star-icon-active {
+  position: absolute;
+  top: 1%;
+  right: 1%;
+  font-size: 1.8rem;
+  color: yellow;
+}
+
+.star-icon-inactive {
+  position: absolute;
+  top: 1%;
+  right: 1%;
+  font-size: 1.8rem;
+  color: #e1e1e1;
+}
+
+.star-icon-inactive:hover,
+.star-icon-active:hover {
+  cursor: pointer;
 }
 
 .long-title {

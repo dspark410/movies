@@ -1,44 +1,96 @@
 /** @format */
 
-import React from 'react'
-import { RectShape } from 'react-placeholder/lib/placeholders'
+import React, { useState, useEffect } from 'react'
 import { imageLink } from '../utils/noPoster'
+import { MdGrade, AiOutlineClose } from 'react-icons/all'
+import MoviesSkeleton from './MoviesSkeleton'
 
 function Movies({ movies, skeleton }) {
+  const [nominations, setNominations] = useState(
+    JSON.parse(localStorage.getItem('nominations')) || []
+  )
+
+  const addNomination = (title, year) => {
+    const nominationArr = [...nominations]
+
+    const duplicate = nominationArr
+      .map((nomination) => {
+        return nomination.title === title
+      })
+      .includes(true)
+
+    if (!duplicate) nominationArr.push({ title, year })
+
+    setNominations(nominationArr)
+  }
+
+  const removeNomination = (title, year) => {
+    const nominationArr = [...nominations]
+    const filteredArr = nominationArr.filter((nomination) => {
+      return title !== nomination.title || year !== nomination.year
+    })
+    setNominations(filteredArr)
+  }
+
+  const getActiveClass = (movie) => {
+    const nominationsArr = nominations.filter((nomination) => {
+      return nomination.title === movie
+    })
+    if (nominationsArr[0] === undefined) {
+      return 'star-icon-inactive'
+    } else {
+      if (nominationsArr[0].title === movie) {
+        return 'star-icon-active'
+      } else {
+        return 'star-icon-inactive'
+      }
+    }
+  }
+  useEffect(() => {
+    localStorage.setItem('nominations', JSON.stringify(nominations))
+  }, [nominations])
+
   return (
     <>
+      <div className='nomination-container'>
+        <h1>Nomination List</h1>
+
+        {nominations.map((nomination, i) => (
+          <div
+            key={i}
+            className={
+              nomination.title.length > 30
+                ? 'long-nomination-title'
+                : 'nomination'
+            }>
+            <div key={i}>{`${nomination.title} (${nomination.year})`}</div>
+            <AiOutlineClose
+              className='close-icon'
+              onClick={() =>
+                removeNomination(nomination.title, nomination.year)
+              }
+            />
+          </div>
+        ))}
+      </div>
       <div className='movies-container'>
         {skeleton ? (
-          <>
-            {Array.from({ length: 10 }).map((_, i) => (
-              <div key={i} className='skeleon-container'>
-                <RectShape
-                  showLoadingAnimation={true}
-                  color='#272f41'
-                  style={{ width: 320, height: 400, marginBottom: '10px' }}
-                />
-                <RectShape
-                  showLoadingAnimation={true}
-                  color='#272f41'
-                  style={{ width: 100, height: 20, marginBottom: '10px' }}
-                />
-                <RectShape
-                  showLoadingAnimation={true}
-                  color='#272f41'
-                  style={{ width: 50, height: 20, marginBottom: '10px' }}
-                />
-              </div>
-            ))}
-          </>
+          <MoviesSkeleton />
         ) : (
           movies.Search &&
           movies.Search.map((movie, i) => (
             <div className='movies' key={i}>
-              <div>
+              <div className='movie-img-container'>
                 <img
                   className='movie-img'
                   src={movie.Poster !== 'N/A' ? movie.Poster : imageLink}
-                  alt={movie.title}
+                  alt={movie.Title}
+                  onClick={() => addNomination(movie.Title, movie.Year)}
+                />
+                <MdGrade
+                  className={getActiveClass(movie.Title)}
+                  key={i}
+                  onClick={() => addNomination(movie.Title, movie.Year)}
                 />
               </div>
               <div className={movie.Title.length > 30 ? 'long-title' : 'title'}>
@@ -49,6 +101,7 @@ function Movies({ movies, skeleton }) {
           ))
         )}
       </div>
+
       {movies.Error === 'Movie not found!' && (
         <div className='no-movie'>
           Movie not found. Please be more specific!
