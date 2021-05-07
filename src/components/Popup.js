@@ -21,7 +21,7 @@ function Popup({ nominations }) {
         nominations.map((nomination) => {
           return axios
             .get(
-              `http://www.omdbapi.com/?t=${nomination.title}&apikey=${API_KEY}`
+              `https://www.omdbapi.com/?t=${nomination.title}&apikey=${API_KEY}`
             )
             .then((res) => {
               popupDataArr.push(res.data)
