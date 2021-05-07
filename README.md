@@ -4,7 +4,9 @@
 
 Shopify intership challenge.
 
-Movie app using the OMDB api to serach for movies. Five movies can be nominated before a banner appears on the screen.
+Movie app using the OMDB API to search for movies. Five movies can be nominated before a banner appears on the screen.
+
+![Screenshot](public/images/movies.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
