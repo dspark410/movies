@@ -16,21 +16,15 @@ function Popup({ nominations }) {
 
   useEffect(() => {
     if (nominations.length === 5) {
-      const popupDataArr = []
       Promise.all(
-        nominations.map((nomination) => {
-          return axios
-            .get(
-              `https://www.omdbapi.com/?t=${nomination.title}&apikey=${API_KEY}`
-            )
-            .then((res) => {
-              popupDataArr.push(res.data)
-            })
+        nominations.map(async (nomination) => {
+          const { data } = await axios.get(
+            `https://www.omdbapi.com/?t=${nomination.title}&apikey=${API_KEY}`
+          )
+          return data
         })
-      ).then(() => {
-        if (popupDataArr.length === 5) {
-          setPopupData(popupDataArr)
-        }
+      ).then((response) => {
+        setPopupData(response)
       })
 
       setPopup(true)
@@ -54,7 +48,7 @@ function Popup({ nominations }) {
         </div>
 
         {popupData.map((p, i) => (
-          <div className='popupdata-container'>
+          <div key={i} className='popupdata-container'>
             <img
               src={p.Poster !== 'N/A' ? p.Poster : imageLink}
               alt={p.Title}
